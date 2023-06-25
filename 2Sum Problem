@@ -1,49 +1,21 @@
 
-/* Declare and implement your function here 
-eg: function example(parameter_name1,parameter_name2....){}
-Handle the input/output from main()
-*/
-
-
-
-
-process.stdin.resume();
-process.stdin.setEncoding('ascii');
-
-var input_stdin = "";
-var input_stdin_array = "";
-var input_currentline = 0;
-
-process.stdin.on('data', function (data) {
-input_stdin += data;
-});
-
-process.stdin.on('end', function () {
-input_stdin_array = input_stdin.split("\n");
-main();    
-});
-
-function readLine() {
-return input_stdin_array[input_currentline++];
-}
-
-
-function main() {
-
-    /* Read your input here 
-    eg: For string variables:   let str = String(readLine()); 
-        For int variables: let var_name = parseInt(readLine());
-        For arrays : const arr = readLine().replace(/\s+$/g, '').split(' ');
-    */
-
-    /*
-    Call your function with the input/parameters read above
-    eg: let x = example(var_name, arr);
-    */
-
-   /*
-   Log your output here 
-   eg: console.log(x);
-   */
-
-}
+class Solution{
+public:
+    vector<pair<int,int>> allPairs(int A[], int B[], int N, int M, int X)
+    {
+        // Your code goes here  
+        map<int,int> s;
+        for (int i=0; i<N; i++) {
+            s[A[i]]++;
+        }
+        vector<pair<int,int>> v;
+        
+        for (int i=0; i<M; i++) {
+           if (s.find(X-B[i])!=s.end()){
+               v.push_back(make_pair(X-B[i],B[i]));
+           }
+        }
+        sort(v.begin(),v.end());
+        return v;
+    }
+};
